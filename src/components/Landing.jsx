@@ -9,6 +9,10 @@ export default function Landing(props) {
         name: "",
         email: ""
     })
+    const [errors, setErrors] = React.useState({
+        name: "Please enter your name",
+        email: ""
+    })
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -17,7 +21,38 @@ export default function Landing(props) {
         setInput({
             ...input,
             [name]: value
-        })
+        });
+        if(name === "name") {
+            if(value.length < 5 || value.length > 25) {
+                setErrors({
+                    ...errors,
+                    name: "Name of at least 5 characters"
+                })
+            } else if(value.length > 25) {
+                setErrors({
+                    ...errors,
+                    name: "Name no longer than 25 characters"
+                })
+            } else {
+                setErrors({
+                    ...errors,
+                    name: ""
+                })
+            }
+        }
+        if(name === "email") {
+            if(!/\S+@\S+\.\S+/.test(value)) {
+                setErrors({
+                    ...errors,
+                    email: "You must enter a valid email"
+                })
+            } else {
+                setErrors({
+                    ...errors,
+                    email: ""
+                })
+            }
+        }
     }
     // console.log(input);
     
@@ -39,6 +74,7 @@ export default function Landing(props) {
                     value={input.name}
                     onChange={handleChange}
                 />
+                <p style={{color:"red"}}>{errors.name && errors.name}</p>
                 <br />
 
                 <label>Please, enter your email: </label>
@@ -48,6 +84,7 @@ export default function Landing(props) {
                     value={input.value}
                     onChange={handleChange}
                 />
+                <p style={{color:"red"}}>{errors.email && errors.email}</p>
                 <br />
 
                 <button type="submit">Set name</button>

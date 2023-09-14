@@ -1,11 +1,13 @@
 import { useDispatch, useSelector } from "react-redux"
-import { completedFavorite, ratingFavorite } from "../redux/actions";
+import { completedFavorite, deleteFavorite, ratingFavorite } from "../redux/actions";
 import { Link } from "react-router-dom";
 
 export default function Favorites(props) {
 
     const favorites = useSelector(state => state.favorites);
+
     const dispatch = useDispatch();
+    
     const handleChange = event => {
         dispatch(ratingFavorite({id: Number(event.target.name), rating: event.target.value}))
     }
@@ -37,6 +39,7 @@ export default function Favorites(props) {
                                     : <h3 style={{color:"red"}}>Incompleted</h3>
                             }
                         </button>
+                        <button onClick={() => dispatch(deleteFavorite(fav.id))}>Delete</button>
                         <hr />
                     </div>
                 ))

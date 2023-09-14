@@ -5,6 +5,7 @@ const initialState = {
     user: {} //* state.user.name   { name, email }
 }
 
+//* action = { type, payload }
 const reducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_USER:

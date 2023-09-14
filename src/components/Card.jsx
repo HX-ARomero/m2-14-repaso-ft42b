@@ -14,6 +14,7 @@ export default function Card({ episode }) {
             completed: false,
             rating: 3
         }
+        // dispatch({type: "ADD_FAVORITE", payload: newFavorite});
         dispatch(addFavorite(newFavorite));
         setIsFavorite(true);
     }
