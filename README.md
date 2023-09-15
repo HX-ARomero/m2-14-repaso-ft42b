@@ -1,4 +1,4 @@
-# Módulo 2 | REPASO
+# Módulo 2 | REPASO |
 
 ## Cohorte FT42b - 14/09/2023
 
